@@ -41,8 +41,9 @@ function TUPC_showTopics()
 		'id' => 'attach_paths',
 		'title' => $txt['TUPC_topics'],
 		'items_per_page' => $modSettings['defaultMaxMessages'],
-		'base_href' => $scripturl . '?action=profile;area=threads',
+		'base_href' => $scripturl . '?action=profile;area=threads;sa=' . ($context['topics_created'] ? 'created' : 'participated'),
 		'default_sort_col' => 'lastpost',
+		'default_sort_dir' => 'desc',
 		'no_items_label' => $context['topics_created'] ? $txt['TUPC_no_topics_created'] : $txt['TUPC_no_topics_participated'],
 		'get_items' => array(
 			'function' => $context['topics_created'] ? 'TUPC_Created' : 'TUPC_Participated',

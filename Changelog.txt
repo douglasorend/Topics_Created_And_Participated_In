@@ -1,3 +1,7 @@
+v2.3 - February 10th, 2017
+o Changed default sort direction to descending.
+o Fixed issue where clicking on pages in "Participated In" goes back to "Topics Created" page.
+
 v2.2 - December 20th, 2016
 o Fixed bug where user can see topics made in boards that they don't have access to.
 
