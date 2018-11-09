@@ -142,9 +142,11 @@ function TUPC_Created_Count()
 		FROM {db_prefix}topics AS t
 			LEFT JOIN {db_prefix}boards AS b ON (b.id_board = t.id_board)
 		WHERE {query_see_board}
-			AND id_member_started = {int:id_member}',
+			AND id_member_started = {int:id_member}' . (!empty($modSettings['recycle_enable']) && $modSettings['recycle_board'] > 0 ? '
+			AND b.id_board != {int:recycle_board}' : ''),
 		array(
 			'id_member' => (int) $_GET['u'],
+			'recycle_board' => $modSettings['recycle_board'],
 		)
 	);
 	list($count) = $smcFunc['db_fetch_row']($request);
@@ -169,10 +171,12 @@ function TUPC_Created($start, $items_per_page, $sort)
 			LEFT JOIN {db_prefix}members AS memf ON (memf.id_member = mf.id_member)
 			LEFT JOIN {db_prefix}members AS meml ON (meml.id_member = ml.id_member)
 		WHERE {query_see_board}
-			AND t.id_member_started = {int:id_member}
+			AND t.id_member_started = {int:id_member}' . (!empty($modSettings['recycle_enable']) && $modSettings['recycle_board'] > 0 ? '
+			AND b.id_board != {int:recycle_board}' : '') . '
 		ORDER BY {raw:sort}
 		LIMIT {int:start}, {int:per_page}',
 		array(
+			'recycle_board' => $modSettings['recycle_board'],
 			'sort' => $sort,
 			'start' => $start,
 			'per_page' => $items_per_page,
@@ -198,9 +202,11 @@ function TUPC_Participated_Count()
 		FROM {db_prefix}messages AS m
 			LEFT JOIN {db_prefix}boards AS b ON (b.id_board = m.id_board)
 		WHERE {query_see_board}
-			AND id_member = {int:id_member}',
+			AND id_member = {int:id_member}' . (!empty($modSettings['recycle_enable']) && $modSettings['recycle_board'] > 0 ? '
+			AND b.id_board != {int:recycle_board}' : ''),
 		array(
 			'id_member' => (int) $_GET['u'],
+			'recycle_board' => $modSettings['recycle_board'],
 		)
 	);
 	$topics = array(0);
@@ -234,10 +240,12 @@ function TUPC_Participated($start, $items_per_page, $sort)
 			LEFT JOIN {db_prefix}members AS memf ON (memf.id_member = mf.id_member)
 			LEFT JOIN {db_prefix}members AS meml ON (meml.id_member = ml.id_member)
 		WHERE {query_see_board}
-			AND t.id_topic IN ({array_int:topics})
+			AND t.id_topic IN ({array_int:topics})' . (!empty($modSettings['recycle_enable']) && $modSettings['recycle_board'] > 0 ? '
+			AND b.id_board != {int:recycle_board}' : '') . '
 		ORDER BY {raw:sort}
 		LIMIT {int:start}, {int:per_page}',
 		array(
+			'recycle_board' => $modSettings['recycle_board'],
 			'sort' => $sort,
 			'start' => $start,
 			'per_page' => $items_per_page,

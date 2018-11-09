@@ -1,3 +1,7 @@
+v2.7 - January 15th, 2018
+o Added Russian translation, courtsey of [url=https://www.simplemachines.org/community/index.php?action=profile;u=97557]digger[/url]!
+o Fixed queries so that recycle boards are omitted from database queries.
+
 v2.6 - July 17th, 2017
 o Language settings moved from [b]Profile.english.php[/b] to [b]TUPC.english.php[/b].
 
