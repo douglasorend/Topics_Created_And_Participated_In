@@ -3,13 +3,18 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:ThreadsParticipated</id>
 <name>Threads Participated In</name>
-<version>1.0</version>
+<version>2.0</version>
 
-<file name="$languagedir/index.english.php">
+<file name="$languagedir/Profile.english.php">
 	<operation>
 		<search position="end" />
 		<add><![CDATA[
-$txt['showThreads'] = 'Threads';
+$txt['TUPC_topics'] = 'Show User Topics';
+$txt['TUPC_topics_desc'] = 'This section allows you to view the topics this user has created, and which topics the user has participated in.';
+$txt['TUPC_user_created'] = 'User Created';
+$txt['TUPC_user_participated'] = 'User Participated In';
+$txt['TUPC_no_topics_created'] = 'User has not started any topics.';
+$txt['TUPC_no_topics_participated'] = 'User has not participated in any topics.';
 ]]></add>
 	</operation>
 </file>

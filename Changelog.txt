@@ -1,2 +1,5 @@
+v2.0 - December 17th, 2016
+o Complete overall to improve functionality and viewing experience.
+
 v1.0 - October 19th, 2016
 o Initial release to the public

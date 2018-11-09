@@ -1,11 +1,11 @@
 [hr]
-[center][color=red][size=16pt][b]THREADS PARTICIPATED IN v1.0[/b][/size][/color]
+[center][color=red][size=16pt][b]TOPICS CREATED AND PARTICIPATED IN v2.0[/b][/size][/color]
 [url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]By Dougiefresh[/b][/url] -> [url=http://custom.simplemachines.org/mods/index.php?mod=4121]Link to Mod[/url]
 [/center]
 [hr]
 
 [color=blue][b][size=12pt][u]Introduction[/u][/size][/b][/color]
-This mod adds a new section to the [b]Show Posts[/b] area of the Profile, which shows all the threads that the user has participated in.
+This mod adds a new section under [b]Profile[/b] called [b]Show User Topics[/b], which shows all the threads that the user has participated in and created.
 
 [color=blue][b][size=12pt][u]Admin Settings[/u][/size][/b][/color]
 There are no admin settings for this mod.  To disable this mod, you must uninstall it.
