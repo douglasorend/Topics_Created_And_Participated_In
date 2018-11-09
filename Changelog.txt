@@ -1,3 +1,6 @@
+v2.2 - December 20th, 2016
+o Fixed bug where user can see topics made in boards that they don't have access to.
+
 v2.1 - December 19th, 2016
 o Modified code so that topic list can be pulled for any user, by any user.
 o Removed erroneous permission check.

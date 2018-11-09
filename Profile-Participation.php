@@ -138,8 +138,10 @@ function TUPC_Created_Count()
 	global $smcFunc;
 	$request = $smcFunc['db_query']('', '
 		SELECT COUNT(*) AS count
-		FROM {db_prefix}topics
-		WHERE id_member_started = {int:id_member}',
+		FROM {db_prefix}topics AS t
+			LEFT JOIN {db_prefix}boards AS b ON (b.id_board = t.id_board)
+		WHERE {query_see_board}
+			AND id_member_started = {int:id_member}',
 		array(
 			'id_member' => (int) $_GET['u'],
 		)
@@ -165,7 +167,8 @@ function TUPC_Created($start, $items_per_page, $sort)
 			INNER JOIN {db_prefix}messages AS ml ON (ml.id_msg = t.id_last_msg)
 			LEFT JOIN {db_prefix}members AS memf ON (memf.id_member = mf.id_member)
 			LEFT JOIN {db_prefix}members AS meml ON (meml.id_member = ml.id_member)
-		WHERE t.id_member_started = {int:id_member}
+		WHERE {query_see_board}
+			AND t.id_member_started = {int:id_member}
 		ORDER BY {raw:sort}
 		LIMIT {int:start}, {int:per_page}',
 		array(
@@ -191,8 +194,10 @@ function TUPC_Participated_Count()
 	
 	$request = $smcFunc['db_query']('', '
 		SELECT DISTINCT id_topic AS id_topic
-		FROM {db_prefix}messages
-		WHERE id_member = {int:id_member}',
+		FROM {db_prefix}messages AS m
+			LEFT JOIN {db_prefix}boards AS b ON (b.id_board = m.id_board)
+		WHERE {query_see_board}
+			AND id_member = {int:id_member}',
 		array(
 			'id_member' => (int) $_GET['u'],
 		)
@@ -227,7 +232,8 @@ function TUPC_Participated($start, $items_per_page, $sort)
 			INNER JOIN {db_prefix}messages AS ml ON (ml.id_msg = t.id_last_msg)
 			LEFT JOIN {db_prefix}members AS memf ON (memf.id_member = mf.id_member)
 			LEFT JOIN {db_prefix}members AS meml ON (meml.id_member = ml.id_member)
-		WHERE t.id_topic IN ({array_int:topics})
+		WHERE {query_see_board}
+			AND t.id_topic IN ({array_int:topics})
 		ORDER BY {raw:sort}
 		LIMIT {int:start}, {int:per_page}',
 		array(
