@@ -1,3 +1,8 @@
+v2.1 - December 19th, 2016
+o Modified code so that topic list can be pulled for any user, by any user.
+o Removed erroneous permission check.
+o Removed template in exchange for using template inside Attachment template file.
+
 v2.0 - December 17th, 2016
 o Complete overall to improve functionality and viewing experience.
 

@@ -14,13 +14,14 @@ if (!defined('SMF'))
 ********************************************************************************/
 function TUPC_showTopics()
 {
-	global $context, $txt, $scripturl, $modSettings, $smcFunc, $sourcedir;
+	global $context, $txt, $scripturl, $modSettings, $smcFunc, $sourcedir, $user_info;
 
 	// Set up for listing the "important" topics:
-	isAllowedTo('can_mark_important');
+	loadTemplate('ManageAttachments');
 	$context['page_title' ] = $txt['TUPC_topics'];
-	$context['sub_template'] = 'important_topics';
+	$context['sub_template'] = 'attachment_paths';
 	$context['topics_created'] = !(isset($_GET['sa']) && $_GET['sa'] == 'participated');
+	$_GET['u'] = (int) (isset($_GET['u']) ? $_GET['u'] : $user_info['id']);
 
 	// Create the tabs for the template.
 	$context[$context['profile_menu_name']]['tab_data'] = array(
@@ -37,7 +38,7 @@ function TUPC_showTopics()
 
 	// Set the options for the list component.
 	$topic_listOptions = array(
-		'id' => 'important_topics',
+		'id' => 'attach_paths',
 		'title' => $txt['TUPC_topics'],
 		'items_per_page' => $modSettings['defaultMaxMessages'],
 		'base_href' => $scripturl . '?action=profile;area=threads',
@@ -59,8 +60,11 @@ function TUPC_showTopics()
 						global $scripturl, $txt;
 						$board = \'<strong><a href="\' . $scripturl . \'?board=\' . $rowData["id_board"] . \'.0">\' . $rowData[\'board_name\'] . \'</a></strong>\';
 						$topic = \'<strong><a href="\' . $scripturl . \'?topic=\' . $rowData["id_topic"] . \'.0">\' . $rowData[\'first_subject\'] . \'</a></strong>\';
-						$user = \'<strong><a href="\' . $scripturl . \'?action=profile;user=\' . $rowData["first_member"] . \'">\' . $rowData[\'first_poster\'] . \'</a></strong>\';
-						return $board . " \\\\ " . $topic . \'<div class="smalltext">\' . $txt["started_by"] . " " . $user . \'</div>\';
+						if (!empty($rowData["first_member"]))
+							$user = \'<a href="\' . $scripturl . \'?action=profile;user=\' . $rowData["first_member"] . \'">\' . $rowData[\'first_poster\'] . \'</a>\';
+						else
+							$user = $rowData["first_member"];
+						return $board . " \\\\ " . $topic . \'<div class="smalltext">\' . $txt["started_by"] . " <strong>" . $user . \'</strong></div>\';
 					'),
 				),
 				'sort' => array(
@@ -105,8 +109,11 @@ function TUPC_showTopics()
 				'data' => array(
 					'function' => create_function('$rowData', '
 						global $scripturl, $txt;
-						$user = \'<strong><a href=\"\' . $scripturl . \'?action=profile;user=\' . $rowData["last_member"] . \'">\' . $rowData[\'last_poster\'] . \'</a></strong>\';
-						return "<strong>" . $txt["last_post"] . "</strong> " . $txt["by"] . " " . $user . \'<div class="smalltext">\' . timeformat($rowData[\'last_posted\']);
+						if (!empty($rowData["last_member"]))
+							$user = \'<a href="\' . $scripturl . \'?action=profile;user=\' . $rowData["last_member"] . \'">\' . $rowData[\'last_poster\'] . \'</a>\';
+						else
+							$user = $rowData["last_member"];
+						return "<strong>" . $txt["last_post"] . "</strong> " . $txt["by"] . " <strong>" . $user . \'</strong><div class="smalltext">\' . timeformat($rowData[\'last_posted\']);
 					'),
 					'style' => 'width: 30%',
 				),
@@ -128,13 +135,13 @@ function TUPC_showTopics()
 ********************************************************************************/
 function TUPC_Created_Count()
 {
-	global $smcFunc, $user_info;
+	global $smcFunc;
 	$request = $smcFunc['db_query']('', '
 		SELECT COUNT(*) AS count
 		FROM {db_prefix}topics
 		WHERE id_member_started = {int:id_member}',
 		array(
-			'id_member' => (int) $user_info['id'],
+			'id_member' => (int) $_GET['u'],
 		)
 	);
 	list($count) = $smcFunc['db_fetch_row']($request);
@@ -144,9 +151,8 @@ function TUPC_Created_Count()
 
 function TUPC_Created($start, $items_per_page, $sort)
 {
-	global $smcFunc, $user_info;
-	
-	$request = $smcFunc['db_query']('', '
+	global $smcFunc;
+ 	$request = $smcFunc['db_query']('', '
 		SELECT
 			t.id_topic, t.num_replies, t.num_views, t.id_first_msg, b.id_board, b.name AS board_name,
 			mf.id_member AS first_member, IFNULL(meml.real_name, ml.poster_name) AS last_poster, 
@@ -166,7 +172,7 @@ function TUPC_Created($start, $items_per_page, $sort)
 			'sort' => $sort,
 			'start' => $start,
 			'per_page' => $items_per_page,
-			'id_member' => (int) $user_info['id'],
+			'id_member' => (int) $_GET['u'],
 		)
 	);
 	$topics = array();
@@ -188,7 +194,7 @@ function TUPC_Participated_Count()
 		FROM {db_prefix}messages
 		WHERE id_member = {int:id_member}',
 		array(
-			'id_member' => (int) $user_info['id'],
+			'id_member' => (int) $_GET['u'],
 		)
 	);
 	$topics = array();
@@ -203,6 +209,11 @@ function TUPC_Participated($start, $items_per_page, $sort)
 {
 	global $smcFunc, $user_info, $context;
 	
+	// Is the topic list defined?  If not, then do so before continuing:
+	if (empty($context['TUPC_topics']))
+		TUPC_Participated_Count();
+
+	// Do the database query:
 	$request = $smcFunc['db_query']('', '
 		SELECT
 			t.id_topic, t.num_replies, t.num_views, t.id_first_msg, b.id_board, b.name AS board_name,
@@ -231,14 +242,6 @@ function TUPC_Participated($start, $items_per_page, $sort)
 		$topics[] = $row;
 	$smcFunc['db_free_result']($request);
 	return $topics;
-}
-
-/********************************************************************************
-* Our stupid, short template function: a necessary evil....
-********************************************************************************/
-function template_important_topics()
-{
-	template_show_list('important_topics');
 }
 
 ?>

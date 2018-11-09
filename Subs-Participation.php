@@ -27,8 +27,8 @@ function TUPC_profile(&$buttons)
 					'participated' => array($txt['TUPC_user_participated'], array('profile_view_own', 'profile_view_any')),
 				),
 				'permission' => array(
-					'own' => 'profile_view_own',
-					'any' => 'profile_view_any',
+					'own' => array('profile_view_own'),
+					'any' => array('profile_view_any'),
 				),
 			);
 		}
