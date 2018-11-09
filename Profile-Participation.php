@@ -14,7 +14,7 @@ if (!defined('SMF'))
 ********************************************************************************/
 function TUPC_showTopics()
 {
-	global $context, $txt, $scripturl, $modSettings, $smcFunc, $sourcedir, $user_info;
+	global $context, $txt, $scripturl, $modSettings, $sourcedir, $user_info;
 
 	// Set up for listing the "important" topics:
 	loadTemplate('ManageAttachments');
@@ -65,7 +65,7 @@ function TUPC_showTopics()
 							$user = \'<a href="\' . $scripturl . \'?action=profile;user=\' . $rowData["first_member"] . \'">\' . $rowData[\'first_poster\'] . \'</a>\';
 						else
 							$user = $rowData["first_member"];
-						return $board . " \\\\ " . $topic . \'<div class="smalltext">\' . $txt["started_by"] . " <strong>" . $user . \'</strong></div>\';
+						return $board . " &#187; " . $topic . \'<div class="smalltext">\' . $txt["started_by"] . " <strong>" . $user . \'</strong></div>\';
 					'),
 				),
 				'sort' => array(
@@ -136,7 +136,7 @@ function TUPC_showTopics()
 ********************************************************************************/
 function TUPC_Created_Count()
 {
-	global $smcFunc;
+	global $smcFunc, $modSettings;
 	$request = $smcFunc['db_query']('', '
 		SELECT COUNT(*) AS count
 		FROM {db_prefix}topics AS t
@@ -156,7 +156,7 @@ function TUPC_Created_Count()
 
 function TUPC_Created($start, $items_per_page, $sort)
 {
-	global $smcFunc;
+	global $smcFunc, $modSettings;
  	$request = $smcFunc['db_query']('', '
 		SELECT
 			t.id_topic, t.num_replies, t.num_views, t.id_first_msg, b.id_board, b.name AS board_name,
@@ -195,7 +195,7 @@ function TUPC_Created($start, $items_per_page, $sort)
 ********************************************************************************/
 function TUPC_Participated_Count()
 {
-	global $smcFunc, $user_info, $context;
+	global $smcFunc, $context, $modSettings;
 	
 	$request = $smcFunc['db_query']('', '
 		SELECT DISTINCT id_topic AS id_topic
@@ -219,7 +219,7 @@ function TUPC_Participated_Count()
 
 function TUPC_Participated($start, $items_per_page, $sort)
 {
-	global $smcFunc, $user_info, $context;
+	global $smcFunc, $context, $modSettings;
 	
 	// Is the topic list defined?  If not, then do so before continuing:
 	if (empty($context['TUPC_topics']))
