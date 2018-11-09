@@ -1,3 +1,6 @@
+v2.4 - February 26th, 2017
+o Fixed database error that occurs when user has participated in no topics.
+
 v2.3 - February 10th, 2017
 o Changed default sort direction to descending.
 o Fixed issue where clicking on pages in "Participated In" goes back to "Topics Created" page.

@@ -203,12 +203,12 @@ function TUPC_Participated_Count()
 			'id_member' => (int) $_GET['u'],
 		)
 	);
-	$topics = array();
+	$topics = array(0);
 	while ($row = $smcFunc['db_fetch_assoc']($request))
 		$topics[] = $row['id_topic'];
 	$smcFunc['db_free_result']($request);
 	$context['TUPC_topics'] = $topics;
-	return count($topics);
+	return count($topics) - 1;
 }
 
 function TUPC_Participated($start, $items_per_page, $sort)
