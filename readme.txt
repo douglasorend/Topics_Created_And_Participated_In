@@ -1,5 +1,5 @@
 [hr]
-[center][color=red][size=16pt][b]TOPICS CREATED AND PARTICIPATED IN v2.8[/b][/size][/color]
+[center][color=red][size=16pt][b]TOPICS CREATED AND PARTICIPATED IN v2.9[/b][/size][/color]
 [url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]By Dougiefresh[/b][/url] -> [url=http://custom.simplemachines.org/mods/index.php?mod=4121]Link to Mod[/url]
 [/center]
 [hr]
@@ -12,6 +12,10 @@ There are no admin settings for this mod.  To disable this mod, you must uninsta
 
 [color=blue][b][size=12pt][u]Compatibility Notes[/u][/size][/b][/color]
 This mod was tested on SMF 2.0.12, but should work on SMF 2.0 and up.  SMF 1.x is not and will not be supported.  
+
+[color=blue][b][size=12pt][u]Translators[/u][/size][/b][/color]
+o Russian: [url=https://www.simplemachines.org/community/index.php?action=profile;u=97557]digger[/url]
+o Spanish Latin: [url=https://www.simplemachines.org/community/index.php?action=profile;u=322597]Rock Lee[/url]
 
 [color=blue][b][size=12pt][u]Changelog[/u][/size][/b][/color]
 The changelog has been removed and can be seen at [url=http://www.xptsp.com/board/index.php?topic=680.msg1011#msg1011]XPtsp.com[/url].
