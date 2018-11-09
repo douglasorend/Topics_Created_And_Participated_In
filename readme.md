@@ -1,27 +1,31 @@
-[hr]
-[center][color=red][size=16pt][b]TOPICS CREATED AND PARTICIPATED IN v2.10[/b][/size][/color]
-[url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]By Dougiefresh[/b][/url] -> [url=http://custom.simplemachines.org/mods/index.php?mod=4121]Link to Mod[/url]
-[/center]
-[hr]
+--------
 
-[color=blue][b][size=12pt][u]Introduction[/u][/size][/b][/color]
-This mod adds a new section under [b]Profile[/b] called [b]Show User Topics[/b], which shows all the threads that the user has participated in and created.
+# TOPICS CREATED AND PARTICIPATED IN v2.10
 
-[color=blue][b][size=12pt][u]Admin Settings[/u][/size][/b][/color]
+[**By Dougiefresh**](http://www.simplemachines.org/community/index.php?action=profile;u=253913) -> [Link to Mod](http://custom.simplemachines.org/mods/index.php?mod=4121)
+
+--------
+
+## Introduction
+This mod adds a new section under **Profile** called **Show User Topics**, which shows all the threads that the user has participated in and created.
+
+## Admin Settings
 There are no admin settings for this mod.  To disable this mod, you must uninstall it.
 
-[color=blue][b][size=12pt][u]Compatibility Notes[/u][/size][/b][/color]
+## Compatibility Notes
 This mod was tested on SMF 2.0.12, but should work on SMF 2.0 and up.  SMF 1.x is not and will not be supported.  
 
-[color=blue][b][size=12pt][u]Translators[/u][/size][/b][/color]
-o Russian: [url=https://www.simplemachines.org/community/index.php?action=profile;u=97557]digger[/url]
-o Spanish Latin: [url=https://www.simplemachines.org/community/index.php?action=profile;u=322597]Rock Lee[/url]
+## Translators
 
-[color=blue][b][size=12pt][u]Changelog[/u][/size][/b][/color]
-The changelog can be viewed at [url=http://www.xptsp.com/board/free-modifications/topics-created-and-participated-in/?tab=1]Xptsp.com[/url].
+- Russian: [digger](https://www.simplemachines.org/community/index.php?action=profile;u=97557)
+- Spanish Latin: [Rock Lee](https://www.simplemachines.org/community/index.php?action=profile;u=322597)
 
-[color=blue][b][size=12pt][u]License[/u][/size][/b][/color]
+## Changelog
+The changelog can be viewed at [Xptsp.com](http://www.xptsp.com/board/free-modifications/topics-created-and-participated-in/?tab=1).
+
+## License
 Copyright (c) 2016 - 2018, Douglas Orend
+
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
