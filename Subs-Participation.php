@@ -12,6 +12,7 @@ if (!defined('SMF'))
 function TUPC_profile(&$buttons)
 {
 	global $txt, $scripturl;
+	loadLanguage('TUPC');
 	$new = array();
 	foreach ($buttons['info']['areas'] as $id => $info)
 	{
