@@ -1,3 +1,7 @@
+v2.11 - November 9th, 2018
+o Added user parameter to the base URL of the list produced.
+o Added Portuguese Brazilian translation, courtsey of [url=https://www.simplemachines.org/community/index.php?action=profile;u=598068]ORIONzitos[/url]!
+
 v2.10 - November 8th, 2018
 o No functionality change.
 o Updated documentation to point to new website.

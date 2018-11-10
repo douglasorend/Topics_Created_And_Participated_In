@@ -21,7 +21,7 @@ function TUPC_showTopics()
 	$context['page_title' ] = $txt['TUPC_topics'];
 	$context['sub_template'] = 'attachment_paths';
 	$context['topics_created'] = !(isset($_GET['sa']) && $_GET['sa'] == 'participated');
-	$_GET['u'] = (int) (isset($_GET['u']) ? $_GET['u'] : $user_info['id']);
+	$_REQUEST['u'] = $_GET['u'] = (int) (isset($_GET['u']) ? $_GET['u'] : $user_info['id']);
 
 	// Create the tabs for the template.
 	$context[$context['profile_menu_name']]['tab_data'] = array(
@@ -41,7 +41,7 @@ function TUPC_showTopics()
 		'id' => 'attach_paths',
 		'title' => $txt['TUPC_topics'],
 		'items_per_page' => $modSettings['defaultMaxMessages'],
-		'base_href' => $scripturl . '?action=profile;area=threads;sa=' . ($context['topics_created'] ? 'created' : 'participated'),
+		'base_href' => $scripturl . '?action=profile;area=threads;sa=' . ($context['topics_created'] ? 'created' : 'participated') . ';u=' . $_GET['u'],
 		'default_sort_col' => 'lastpost',
 		'default_sort_dir' => 'desc',
 		'no_items_label' => $context['topics_created'] ? $txt['TUPC_no_topics_created'] : $txt['TUPC_no_topics_participated'],
