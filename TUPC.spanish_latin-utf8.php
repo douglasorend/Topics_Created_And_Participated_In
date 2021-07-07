@@ -9,7 +9,7 @@
 * WITHOUT ANY WARRANTIES; without even any implied warranty of MERCHANTABILITY    *
 * or FITNESS FOR A PARTICULAR PURPOSE.                                            *
 ***********************************************************************************
-* Spanish translation by Rock Lee (https://www.bombercode.org) Copyright 2014-2018
+* Spanish translation by Rock Lee (https://www.bombercode.net) Copyright 2014-2018
 ***********************************************************************************/
 if (!defined('SMF')) 
 	die('Hacking attempt...');
